@@ -1,0 +1,95 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+
+# Virtualenv
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Логи и временные файлы
+*.log
+*.sqlite
+*.sqlite3
+*.pot
+*.db
+
+# Файлы настроек и секреты
+.env
+*.env
+.env.local
+.env.development
+.env.test
+.env.production
+secrets.yml
+config.yml
+credentials.json
+
+# Файлы операционной системы
+.DS_Store
+Thumbs.db
+
+# Файлы сборки и пакетов
+/dist/
+/node_modules/
+/.cache/
+
+# Тестовые покрытия
+.coverage
+htmlcov/
+.coverage.*
+*,cover
+.hypothesis/
+.pytest_cache/
+
+# Документация
+docs/_build/
+
