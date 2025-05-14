@@ -2,8 +2,8 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 import datetime
 import pandas
-from pprint import pprint
 import collections
+
 
 def ending(existence_years):
     two_last_digits = existence_years % 100
@@ -18,7 +18,7 @@ def ending(existence_years):
         return 'лет'
 
 
-def existence_years():
+def calculate_existence_years():
     foundation_date = 1920
     existence_years = datetime.datetime.now().year-foundation_date
     existence_years = f'{existence_years} {ending(existence_years)}'
@@ -47,18 +47,22 @@ def get_exel_data(filename):
         drinks_dict[drink['category']].append(drink)        
     return drinks_dict
 
+def main():
+    env = Environment(
+        loader=FileSystemLoader('.'),
+        autoescape=select_autoescape(['html', 'xml'])
+    )
+    template = env.get_template('template.html')
+    existence_years = calculate_existence_years()
+    drinks_dict = get_exel_data('wine.xlsx')
+    rendered_page = template.render(existence_years=existence_years, drinks_dict=drinks_dict)
 
-env = Environment(
-    loader=FileSystemLoader('.'),
-    autoescape=select_autoescape(['html', 'xml'])
-)
-template = env.get_template('template.html')
-existence_years = existence_years()
-drinks_dict = get_exel_data('wine.xlsx')
-rendered_page = template.render(existence_years=existence_years, drinks_dict=drinks_dict)
+    with open('index.html', 'w', encoding="utf8") as file:
+        file.write(rendered_page)
 
-with open('index.html', 'w', encoding="utf8") as file:
-     file.write(rendered_page)
+    server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
+    server.serve_forever()
 
-server = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
-server.serve_forever()
+
+if __name__ == '__main__':
+    main()
