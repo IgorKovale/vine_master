@@ -28,7 +28,7 @@ def calculate_existence_years():
 
 def get_exel_data(path):
     excel_data_df = pandas.read_excel(
-        f'{path}',
+        path,
         sheet_name='Лист1', 
         na_values=['N/A', 'NA'],
         keep_default_na=False
